@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.todo.model.persistence.TodoMapper">
+    <cache />
+
+    <select id="findAll" resultType="TodoVo">
+        select id, userId, title, done from todo;
+    </select>
+
+    <select id="findById" resultType="TodoVo">
+        select id, userId, title, done from todo where id=#{id};
+    </select>
+
+    <select id="findByUserId" resultType="TodoVo">
+        select id, userId, title, done from todo where userId=#{userId};
+    </select>
+
+    <insert id="save" parameterType="TodoVo">
+        insert into todo (userId, title) values (#{userId}, #{title});
+    </insert>
+
+    <update id="update" parameterType="TodoVo">
+        update todo set title=#{title}, done=#{done} where id=#{id};
+    </update>
+
+    <delete id="delete">
+        delete from todo where id=#{id};
+    </delete>
+
+
+
+</mapper>
